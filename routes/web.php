@@ -1,22 +1,14 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landing.home');
-})->name('home');
-Route::get('/store', function () {
-    return view('landing.store');
-})->name('store');
-Route::get('/product', function () {
-    return view('landing.product');
-})->name('product');
-Route::get('/checkout', function () {
-    return view('landing.checkout');
-})->name('checkout');
-Route::get('/blank', function () {
-    return view('landing.blank');
-})->name('blank');
+// Landing Pages
+Route::get('/', [LandingController::class, 'home'])->name('home');
+Route::get('/store', [LandingController::class, 'store'])->name('store');
+Route::get('/product', [LandingController::class, 'product'])->name('product');
+Route::get('/checkout', [LandingController::class, 'checkout'])->name('checkout');
+Route::get('/blank', [LandingController::class, 'blank'])->name('blank');
 
 // Admin
 Route::get('/admin', function () {
