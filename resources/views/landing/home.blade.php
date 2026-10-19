@@ -88,7 +88,7 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="{{ asset('template/img/' . $product->image) }}" alt="{{ $product->name }}">
+                                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                                             <div class="product-label">
                                                 @if ($product->old_price)
                                                     <span class="sale">-{{ round(($product->old_price - $product->price) / $product->old_price * 100) }}%</span>

@@ -221,7 +221,7 @@
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="{{ asset('template/img/' . $product->image) }}" alt="{{ $product->name }}">
+                                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                                     @if ($product->old_price)
                                         <div class="product-label">
                                             <span class="sale">-{{ round(($product->old_price - $product->price) / $product->old_price * 100) }}%</span>

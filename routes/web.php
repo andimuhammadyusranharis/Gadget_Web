@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,15 +13,13 @@ Route::get('/checkout', [LandingController::class, 'checkout'])->name('checkout'
 Route::get('/blank', [LandingController::class, 'blank'])->name('blank');
 
 // Admin
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
-Route::get('/admin/product', function () {
-    return view('admin.product');
-})->name('admin.product');
-Route::get('/admin/category', function () {
-    return view('admin.category');
-})->name('admin.category');
-Route::get('/admin/order', function () {
-    return view('admin.order');
-})->name('admin.order');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+    Route::resource('product', ProductController::class)->except('show');
+    Route::resource('category', CategoryController::class)->except('create', 'show');
+    Route::get('/order', function () {
+        return view('admin.order');
+    })->name('order');
+});

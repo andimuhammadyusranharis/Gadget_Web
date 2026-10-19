@@ -5,11 +5,11 @@
         <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
         </li>
-        <li class="{{ request()->routeIs('admin.product') ? 'active' : '' }}">
-            <a href="{{ route('admin.product') }}"><i class="fa fa-cube"></i> Produk</a>
+        <li class="{{ request()->routeIs('admin.product.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.product.index') }}"><i class="fa fa-cube"></i> Produk</a>
         </li>
-        <li class="{{ request()->routeIs('admin.category') ? 'active' : '' }}">
-            <a href="{{ route('admin.category') }}"><i class="fa fa-tags"></i> Kategori</a>
+        <li class="{{ request()->routeIs('admin.category.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.category.index') }}"><i class="fa fa-tags"></i> Kategori</a>
         </li>
         <li class="{{ request()->routeIs('admin.order') ? 'active' : '' }}">
             <a href="{{ route('admin.order') }}"><i class="fa fa-shopping-cart"></i> Pesanan</a>
