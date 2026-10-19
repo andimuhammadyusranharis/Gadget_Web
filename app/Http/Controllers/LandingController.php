@@ -9,7 +9,9 @@ class LandingController extends Controller
 {
     public function home(): View
     {
-        return view('landing.home');
+        $newProducts = Product::with('category')->latest()->take(8)->get();
+
+        return view('landing.home', compact('newProducts'));
     }
 
     public function store(): View
@@ -19,9 +21,15 @@ class LandingController extends Controller
         return view('landing.store', compact('products'));
     }
 
-    public function product(): View
+    public function product(Product $product): View
     {
-        return view('landing.product');
+        $relatedProducts = Product::with('category')
+            ->where('category_id', $product->category_id)
+            ->whereKeyNot($product->id)
+            ->take(4)
+            ->get();
+
+        return view('landing.product', compact('product', 'relatedProducts'));
     }
 
     public function checkout(): View

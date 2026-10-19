@@ -26,7 +26,7 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="{{ route('home') }}" class="logo">
-                            <img src="template/img/logo.png" alt="">
+                            <img src="{{ asset('template/img/logo.png') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -72,10 +72,10 @@
                                 <div class="cart-list">
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="template/img/product01.png" alt="">
+                                            <img src="{{ asset('template/img/product01.png') }}" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>
@@ -83,10 +83,10 @@
 
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="template/img/product02.png" alt="">
+                                            <img src="{{ asset('template/img/product02.png') }}" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
                                         </div>
                                         <button class="delete"><i class="fa fa-close"></i></button>

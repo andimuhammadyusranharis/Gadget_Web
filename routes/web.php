@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Landing Pages
 Route::get('/', [LandingController::class, 'home'])->name('home');
 Route::get('/store', [LandingController::class, 'store'])->name('store');
-Route::get('/product', [LandingController::class, 'product'])->name('product');
+Route::get('/product/{product:slug}', [LandingController::class, 'product'])->name('product');
 Route::get('/checkout', [LandingController::class, 'checkout'])->name('checkout');
 Route::get('/blank', [LandingController::class, 'blank'])->name('blank');
 

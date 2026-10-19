@@ -10,7 +10,7 @@
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="template/img/shop01.png" alt="">
+                            <img src="{{ asset('template/img/shop01.png') }}" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>Laptop<br>Collection</h3>
@@ -24,7 +24,7 @@
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="template/img/shop03.png" alt="">
+                            <img src="{{ asset('template/img/shop03.png') }}" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>Accessories<br>Collection</h3>
@@ -38,7 +38,7 @@
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="template/img/shop02.png" alt="">
+                            <img src="{{ asset('template/img/shop02.png') }}" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>Cameras<br>Collection</h3>
@@ -84,19 +84,26 @@
                             <!-- tab -->
                             <div id="tab1" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-1">
+                                    @foreach ($newProducts as $product)
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="template/img/product01.png" alt="">
+                                            <img src="{{ asset('template/img/' . $product->image) }}" alt="{{ $product->name }}">
                                             <div class="product-label">
-                                                <span class="sale">-30%</span>
+                                                @if ($product->old_price)
+                                                    <span class="sale">-{{ round(($product->old_price - $product->price) / $product->old_price * 100) }}%</span>
+                                                @endif
                                                 <span class="new">NEW</span>
                                             </div>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                            <p class="product-category">{{ $product->category->name }}</p>
+                                            <h3 class="product-name"><a href="{{ route('product', $product) }}">{{ $product->name }}</a></h3>
+                                            <h4 class="product-price">${{ number_format($product->price, 2) }}
+                                                @if ($product->old_price)
+                                                    <del class="product-old-price">${{ number_format($product->old_price, 2) }}</del>
+                                                @endif
+                                            </h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -115,119 +122,7 @@
                                         </div>
                                     </div>
                                     <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="template/img/product02.png" alt="">
-                                            <div class="product-label">
-                                                <span class="new">NEW</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="template/img/product03.png" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating">
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="template/img/product04.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="template/img/product05.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
+                                    @endforeach
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
                             </div>
@@ -322,7 +217,7 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="template/img/product06.png" alt="">
+                                            <img src="{{ asset('template/img/product06.png') }}" alt="">
                                             <div class="product-label">
                                                 <span class="sale">-30%</span>
                                                 <span class="new">NEW</span>
@@ -330,7 +225,7 @@
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -354,14 +249,14 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="template/img/product07.png" alt="">
+                                            <img src="{{ asset('template/img/product07.png') }}" alt="">
                                             <div class="product-label">
                                                 <span class="new">NEW</span>
                                             </div>
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -385,14 +280,14 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="template/img/product08.png" alt="">
+                                            <img src="{{ asset('template/img/product08.png') }}" alt="">
                                             <div class="product-label">
                                                 <span class="sale">-30%</span>
                                             </div>
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
                                             </div>
@@ -411,11 +306,11 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="template/img/product09.png" alt="">
+                                            <img src="{{ asset('template/img/product09.png') }}" alt="">
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -439,11 +334,11 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="template/img/product01.png" alt="">
+                                            <img src="{{ asset('template/img/product01.png') }}" alt="">
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -497,11 +392,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product07.png" alt="">
+                                    <img src="{{ asset('template/img/product07.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -510,11 +405,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product08.png" alt="">
+                                    <img src="{{ asset('template/img/product08.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -523,11 +418,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product09.png" alt="">
+                                    <img src="{{ asset('template/img/product09.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -538,11 +433,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product01.png" alt="">
+                                    <img src="{{ asset('template/img/product01.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -551,11 +446,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product02.png" alt="">
+                                    <img src="{{ asset('template/img/product02.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -564,11 +459,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product03.png" alt="">
+                                    <img src="{{ asset('template/img/product03.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -590,11 +485,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product04.png" alt="">
+                                    <img src="{{ asset('template/img/product04.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -603,11 +498,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product05.png" alt="">
+                                    <img src="{{ asset('template/img/product05.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -616,11 +511,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product06.png" alt="">
+                                    <img src="{{ asset('template/img/product06.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -631,11 +526,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product07.png" alt="">
+                                    <img src="{{ asset('template/img/product07.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -644,11 +539,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product08.png" alt="">
+                                    <img src="{{ asset('template/img/product08.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -657,11 +552,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product09.png" alt="">
+                                    <img src="{{ asset('template/img/product09.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -685,11 +580,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product01.png" alt="">
+                                    <img src="{{ asset('template/img/product01.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -698,11 +593,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product02.png" alt="">
+                                    <img src="{{ asset('template/img/product02.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -711,11 +606,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product03.png" alt="">
+                                    <img src="{{ asset('template/img/product03.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -726,11 +621,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product04.png" alt="">
+                                    <img src="{{ asset('template/img/product04.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -739,11 +634,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product05.png" alt="">
+                                    <img src="{{ asset('template/img/product05.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
@@ -752,11 +647,11 @@
                             <!-- product widget -->
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="template/img/product06.png" alt="">
+                                    <img src="{{ asset('template/img/product06.png') }}" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="{{ route('product') }}">product name goes here</a></h3>
+                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
                             </div>
