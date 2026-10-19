@@ -1,0 +1,3 @@
+<script src="{{ asset('template/js/jquery.min.js') }}"></script>
+<script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
